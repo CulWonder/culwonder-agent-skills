@@ -22,8 +22,23 @@ Culwonder 프로젝트용 백엔드 표준 (Leeds Profile Spring Boot Core 계�
 ## 빠른 워크플로
 
 1. **범위** — Guest (`/api/`, `/api-guest/`), logined, business, admin 중 어느 접두사?
-2. **계층** — Entity + aggregate 메서드 → Repository (QueryDSL) → Service (Entity만 반환) → Controller (DTO 인라인 + CommonResponse)
-3. **검증** — 완료 전 아래 체크리스트 실행
+2. **네이밍** — [네이밍 공식](references/naming-formula.md)에 `{D}`·`{d}`·`{A}`·`{S}` 치환
+3. **계층** — Entity + aggregate 메서드 → Repository (QueryDSL) → Service (Entity만 반환) → Controller (DTO 인라인 + CommonResponse)
+4. **검증** — 완료 전 아래 체크리스트 실행
+
+## 네이밍 공식 (요약)
+
+| 대상 | 공식 | 예 (D=Store) |
+|------|------|--------------|
+| Controller | `{D}{A}Controller` | `StoreController`, `StoreAdminController` |
+| Service | `{D}{S}Service` | `StoreService`, `StoreCallService` |
+| Repository | `{D}Repository{R}` | `StoreRepository`, `StoreRepositoryImpl` |
+| Request/Response | `{D}{Act}Request`, `{D}{Type}Response` | `StoreCreateRequest`, `StoreListResponse` |
+| 테이블 | `{d}_module[_{child}]` | `store_module`, `store_module_image` |
+| 목록 API | `GET /{P}/{d}/list` | `GET /api/store/list` |
+| 페이징 JSON 키 | `{item}List` | `storeList` |
+
+상세 토큰·금지 접미·메서드 공식: [references/naming-formula.md](references/naming-formula.md)
 
 ## 절대 어기면 안 되는 규칙
 
@@ -42,10 +57,10 @@ Culwonder 프로젝트용 백엔드 표준 (Leeds Profile Spring Boot Core 계�
 ## 새 도메인 체크리스트
 
 ```
-- [ ] api/{domain}/ 및 Controller 변형 (Guest/Logined/Business/Admin 필요 시)
-- [ ] {Domain}Service, {Domain}CallService, {Domain}ProviderService
-- [ ] {Domain}Repository + Custom + Impl (QueryDSL)
-- [ ] 테이블: {domain}_module (root), {domain}_module_{child} (하위)
+- [ ] api/{d}/ 및 {D}{A}Controller (A=∅|Logined|Business|Admin, 필요 시)
+- [ ] {D}{S}Service (S=∅|Call|Provider)
+- [ ] {D}Repository + Custom + Impl (QueryDSL)
+- [ ] 테이블: {d}_module (root), {d}_module_{child} (하위)
 - [ ] Audit 컬럼: createdId, createdAt, updatedId, updatedAt + @EntityListeners
 - [ ] Swagger GroupedOpenApi bean (displayName 숫자 접두사, 예: "01. …")
 - [ ] 목록 API는 /list로 끝남; PageResponseUtil로 페이징
@@ -103,9 +118,10 @@ Swagger 게스트 그룹은 `/api/{domain}/**`와 `/api-guest/{domain}/**`를 �
 
 ## 참고 문서 (필요 시 읽기)
 
+- [네이밍 공식 (Naming Formula)](references/naming-formula.md)
 - [API·컨트롤러 규칙](references/api-conventions.md)
 - [엔티티·서비스·리포지토리 (DDD + QueryDSL)](references/business-layer.md)
-- [코딩 스타일·네이밍·토큰·설정 불변](references/core-standards.md)
+- [코딩 스타일·토큰·설정 불변](references/core-standards.md)
 - [신규 프로젝트·도메인 셋업](references/project-setup.md)
 
 ## 관련 스킬

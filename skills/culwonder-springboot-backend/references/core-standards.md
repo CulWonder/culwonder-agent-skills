@@ -25,15 +25,17 @@ public class UserService
 - wildcard import 금지
 - 커밋 전 미사용 import 제거
 
-## 네이밍 요약
+## 네이밍
 
-| 계층 | 패턴 |
+범용 공식·토큰·금지 접미는 **[naming-formula.md](naming-formula.md)** 참고.
+
+| 계층 | 공식 |
 |------|------|
-| Controller | `{Domain}Controller`, `{Domain}AdminController`, … |
-| Service | `{Domain}Service`, `{Domain}CallService`, `{Domain}ProviderService` |
-| Repository | `{Domain}Repository`, `{Domain}RepositoryCustom`, `{Domain}RepositoryImpl` |
-| Request/Response | `{Domain}{Action}Request`, `{Domain}{Type}Response` |
-| Entity | `{Domain}` 또는 설명적 엔티티명 |
+| Controller | `{D}{A}Controller` |
+| Service | `{D}{S}Service` |
+| Repository | `{D}Repository{R}` |
+| Request/Response | `{D}{Act}Request`, `{D}{Type}Response` |
+| Entity / 테이블 | `{D}` / `{d}_module[_{child}]` |
 | 에러 코드 | `common/code/ErrorCode.java` enum |
 
 ## 스택 기본값 (Leeds Profile Core)
