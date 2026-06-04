@@ -7,7 +7,7 @@ src/
 ├── app/(ui)/[domain]/   # food, shoot 프로필·주문
 ├── app/(ui)/food|shoot/ # 도메인 페이지
 ├── app/api/             # Next API Routes
-├── components/{ui,atom,molecule,organism,helper,page,etc}
+├── components/{ui,atom,molecule,organism,page,auth,helper,etc}
 ├── hooks/
 ├── redux/
 └── utils/               # apis, apiPaths, format, auth helpers
@@ -27,6 +27,16 @@ export default function DomainLayoutClient({ children }) {
   );
 }
 ```
+
+## 컴포넌트 네이밍
+
+이름 공식: **`{Scope?}{Role}{Variant?}`** — Role 필수, Scope·Variant는 필요 시.
+
+- Core: Scope 없음 (`Modal`, `SearchContent`)
+- Domain: `Food` + `Card`, `Shoot` + `SideBarFilter`
+- Feature: `MealCalculator` + `Step3` + `Modal`
+
+상세 → [component-naming.md](component-naming.md)
 
 ## 유틸 분리
 

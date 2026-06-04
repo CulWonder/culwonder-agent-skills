@@ -2,8 +2,8 @@
 name: culwonder-leeds-profile-frontend
 description: >-
   CulWonder(컬원더) Leeds Profile Next.js 16 App Router 프론트엔드 규칙.
-  apis.js·apiPaths 중앙화, Atomic Design, Redux Toolkit, React Query, 이미지 보호,
-  컴포넌트 카탈로그(Modal, CustomPagination, domain catalogs), 자사 백엔드 미작성 범위.
+  apis.js·apiPaths 중앙화, Atomic Design, 컴포넌트 네이밍 {Scope?}{Role}{Variant?},
+  Redux Toolkit, React Query, 이미지 보호, 컴포넌트 카탈로그, 자사 백엔드 미작성 범위.
   leeds_profile_next, 리즈프로필, CulWonder 프론트 UI·API·컴포넌트 작업 시 사용.
 ---
 
@@ -88,10 +88,11 @@ import { useState } from 'react';
 1. **범위 확인** — 백엔드 구현이 필요한지? 필요하면 프론트만 스펙 문서화
 2. **경로·API** — `apiPaths.js` → `apis.js` 호출 (Same-origin Next route vs `getBackendUri()` 구분, auth 스킬 참고)
 3. **파일 위치** — Atomic Design 폴더 + `src/app/(ui)/.../page.js` 규칙
-4. **상태** — 서버 데이터는 React Query, 필터/검색 UI 상태는 Redux
-5. **컴포넌트 재사용** — [component-catalog-core.md](references/component-catalog-core.md) 확인 후 기존 컴포넌트 우선 사용
-6. **UI** — 로딩·빈 상태·페이지네이션 규칙 적용, 이미지는 `ProtectedImage`, 목록은 `CustomPagination`
-7. **import** — `@/` + react import 스타일 검사
+4. **컴포넌트 이름** — `{Scope?}{Role}{Variant?}` ([component-naming.md](references/component-naming.md))
+5. **상태** — 서버 데이터는 React Query, 필터/검색 UI 상태는 Redux
+6. **컴포넌트 재사용** — [component-catalog-core.md](references/component-catalog-core.md) 확인 후 기존 컴포넌트 우선 사용
+7. **UI** — 로딩·빈 상태·페이지네이션 규칙 적용, 이미지는 `ProtectedImage`, 목록은 `CustomPagination`
+8. **import** — `@/` + react import 스타일 검사
 
 ---
 
@@ -113,19 +114,36 @@ import { useState } from 'react';
 
 ### 컴포넌트 (Atomic Design)
 
-논리 순서: `ui` → `atom` → `molecule` → `organism` → `page` → `helper` → `etc`
+논리 순서: `ui` → `atom` → `molecule` → `organism` → `page` → `auth` → `helper` → `etc`
 
 | 폴더 | 역할 |
 |------|------|
 | `ui/` | shadcn/ui만 |
 | `atom/` | 최소 단위 (Modal, ProtectedImage, ImageUploader) |
-| `molecule/` | atom 조합 (FoodCard, Pagination) |
-| `organism/` | 섹션·복합 UI (HomeHeader, 검색 콘텐츠) |
-| `helper/` | ProtectedRoute, LinkGuard, 필터 가드 |
-| `page/` | 페이지 조립용 (필요 시) |
+| `molecule/` | atom 조합 (ListingCard, CustomPagination) |
+| `organism/` | 섹션·복합 UI (HomeHeader, SearchContent) |
+| `page/` | 페이지 조립·도메인 config (`page/helper/`, `page/food/` 등) |
+| `auth/` | ProtectedRoute, LinkGuard, 로그인 가드 |
+| `helper/` | helper 도메인 Provider·동기화·레거시 마이그레이션 |
 
 - 파일명: `PascalCase.jsx`, 스토리: `{Name}.stories.jsx`
 - shadcn: `cn()` from `@/lib/utils.js`
+
+### 컴포넌트 네이밍 — `{Scope?}{Role}{Variant?}`
+
+| 부분 | 필수 | 의미 | 예 |
+|------|------|------|-----|
+| Scope | 선택 | 도메인·기능 | `Food`, `Shoot`, `Helper`, `MealCalculator` |
+| Role | **필수** | UI·행동 | `Card`, `Filter`, `Content`, `Modal`, `Section` |
+| Variant | 선택 | 형태·단계 | `Swipe`, `Floating`, `Step3`, `SideBar` |
+
+- **Core** (Scope 없음): 2개 이상 도메인 재사용 — `Modal`, `ListingCard`, `SearchContent`
+- **Domain** (`{Scope}{Role}`): 도메인 로직·API·UX가 실질적으로 다름 — `FoodListingCard`
+- **Feature** (`{Feature}{Variant?}{Role}`): 단일 플로우 전용 — `MealCalculatorStep3Modal`
+
+Scope 없이 이름 짓고, 도메인 차이는 `page/{domain}/*.js` config 또는 `{layer}/{domain}/` 폴더로 분리.
+
+상세·결정 트리·금지 패턴 → [component-naming.md](references/component-naming.md)
 
 ### 기타 `src/`
 
@@ -236,6 +254,7 @@ QueryClientProvider → Redux Provider → PersistGate → ImageProtection → T
 | 로딩·페이지네이션·UI 패턴 | [references/components-ui.md](references/components-ui.md) |
 | 컴포넌트 카탈로그 (core) | [references/component-catalog-core.md](references/component-catalog-core.md) |
 | 컴포넌트 카탈로그 (food/shoot/helper/profile) | `references/component-catalog-*.md` |
+| 컴포넌트 네이밍 | [references/component-naming.md](references/component-naming.md) |
 | 폴더 트리·아키텍처·체크리스트 | [references/architecture.md](references/architecture.md) |
 
 원본 전체 규칙: 레포 `.cursor/rules/` (`api.md`, `components.md`, `folder-structure.md` 등)
