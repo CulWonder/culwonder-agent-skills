@@ -39,7 +39,11 @@ import ProtectedImage from '@/components/atom/ProtectedImage';
 )}
 ```
 
-## 페이지네이션 `getPageNumbers` 요약
+## 페이지네이션
+
+목록 UI는 **`@/components/molecule/CustomPagination`** 사용 (규칙 내장). 페이지마다 `getPageNumbers` 재작성 금지.
+
+### `getPageNumbers` 요약 (CustomPagination 내부와 동일)
 
 - `totalPages = Math.ceil(total / size)`, `currentPage` 0-based
 - `totalPages <= 5`: 전부 표시

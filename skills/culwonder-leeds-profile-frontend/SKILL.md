@@ -3,7 +3,8 @@ name: culwonder-leeds-profile-frontend
 description: >-
   CulWonder(컬원더) Leeds Profile Next.js 16 App Router 프론트엔드 규칙.
   apis.js·apiPaths 중앙화, Atomic Design, Redux Toolkit, React Query, 이미지 보호,
-  자사 백엔드 미작성 범위. leeds_profile_next, 리즈프로필, CulWonder 프론트 UI·API·컴포넌트 작업 시 사용.
+  컴포넌트 카탈로그(Modal, CustomPagination, domain catalogs), 자사 백엔드 미작성 범위.
+  leeds_profile_next, 리즈프로필, CulWonder 프론트 UI·API·컴포넌트 작업 시 사용.
 ---
 
 # CulWonder Leeds Profile — 프론트엔드 에이전트 스킬
@@ -88,8 +89,9 @@ import { useState } from 'react';
 2. **경로·API** — `apiPaths.js` → `apis.js` 호출 (Same-origin Next route vs `getBackendUri()` 구분, auth 스킬 참고)
 3. **파일 위치** — Atomic Design 폴더 + `src/app/(ui)/.../page.js` 규칙
 4. **상태** — 서버 데이터는 React Query, 필터/검색 UI 상태는 Redux
-5. **UI** — 로딩·빈 상태·페이지네이션 규칙 적용, 이미지는 `ProtectedImage`
-6. **import** — `@/` + react import 스타일 검사
+5. **컴포넌트 재사용** — [component-catalog-core.md](references/component-catalog-core.md) 확인 후 기존 컴포넌트 우선 사용
+6. **UI** — 로딩·빈 상태·페이지네이션 규칙 적용, 이미지는 `ProtectedImage`, 목록은 `CustomPagination`
+7. **import** — `@/` + react import 스타일 검사
 
 ---
 
@@ -166,6 +168,23 @@ import { useState } from 'react';
 
 ---
 
+## 컴포넌트 재사용 (새로 만들기 전에 확인)
+
+| 문서 | 용도 |
+|------|------|
+| [component-catalog-core.md](references/component-catalog-core.md) | 전역 필수 — Modal, ImageUploader, CustomPagination, auth guard, layout shell |
+| [component-catalog-food.md](references/component-catalog-food.md) | food·장바구니·식단계산기 |
+| [component-catalog-shoot.md](references/component-catalog-shoot.md) | shoot·스튜디오·촬영장 |
+| [component-catalog-helper.md](references/component-catalog-helper.md) | helper·플랜·포즈·스타일 퀴즈 |
+| [component-catalog-profile.md](references/component-catalog-profile.md) | profile·props·admin·입점 폼 |
+
+**비협상**
+- ❌ `Modal`, `ImageUploader`, `CustomPagination`, `ProtectedRoute` 대체 구현
+- ❌ 목록 페이지네이션을 페이지마다 새로 작성 — `CustomPagination` 사용
+- Modal(비즈니스·업로드) vs shadcn `Dialog`(가벼운 UI) 구분 → core catalog 참고
+
+---
+
 ## UI 패턴
 
 ### 로딩·빈 상태
@@ -214,7 +233,9 @@ QueryClientProvider → Redux Provider → PersistGate → ImageProtection → T
 | 주제 | 파일 |
 |------|------|
 | API·React Query·백엔드 요청 형식 | [references/api.md](references/api.md) |
-| 로딩·페이지네이션·컴포넌트 | [references/components-ui.md](references/components-ui.md) |
+| 로딩·페이지네이션·UI 패턴 | [references/components-ui.md](references/components-ui.md) |
+| 컴포넌트 카탈로그 (core) | [references/component-catalog-core.md](references/component-catalog-core.md) |
+| 컴포넌트 카탈로그 (food/shoot/helper/profile) | `references/component-catalog-*.md` |
 | 폴더 트리·아키텍처·체크리스트 | [references/architecture.md](references/architecture.md) |
 
 원본 전체 규칙: 레포 `.cursor/rules/` (`api.md`, `components.md`, `folder-structure.md` 등)
