@@ -2,6 +2,8 @@
 
 새 UI를 만들기 **전에** 이 목록을 확인한다. 아래 컴포넌트의 **대체 구현·복제 금지**.
 
+**네이밍**: `{Scope?}{Role}{Variant?}` — Core는 Scope 없음 (`Modal`, `ListingCard`). 상세 → [component-naming.md](component-naming.md)
+
 도메인별 목록:
 - [component-catalog-food.md](component-catalog-food.md)
 - [component-catalog-shoot.md](component-catalog-shoot.md)
