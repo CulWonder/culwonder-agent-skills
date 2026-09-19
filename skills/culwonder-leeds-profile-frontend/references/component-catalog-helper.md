@@ -47,8 +47,6 @@
 | HelperStyleCard | `@/components/molecule/HelperStyleCard` | 스타일 카드 |
 | HelperMaleStyleCard | `@/components/molecule/HelperMaleStyleCard` | 남성 스타일 카드 |
 | HelperStyleSuggestionsCarousel | `@/components/molecule/HelperStyleSuggestionsCarousel` | 스타일 추천 캐러셀 |
-| HelperStyleDetailPlanBar | `@/components/molecule/HelperStyleDetailPlanBar` | 스타일 상세 플랜 바 |
-| HelperStyleDetailPlanAction | `@/components/molecule/HelperStyleDetailPlanAction` | 플랜 액션 버튼 |
 | HelperPlanHeaderLink | `@/components/molecule/HelperPlanHeaderLink` | 플랜 헤더 링크 |
 | HelperGuideProgressBar | `@/components/molecule/HelperGuideProgressBar` | 가이드 진행 바 |
 
@@ -78,7 +76,7 @@
 | HelperGuideOnboardingModal | `@/components/organism/HelperGuideOnboardingModal` | 가이드 온보딩 모달 |
 | HelperShootingInquiryForm | `@/components/organism/HelperShootingInquiryForm` | 촬영 문의 폼 |
 
-데이터/상수 (`components/page/helper/`): `styleDetails.js`, `poseGuideContent.js`, `inquiryStorage.js` — 컴포넌트가 아닌 콘텐츠 참고용.
+데이터/상수: 각 라우트 `page.js` 내부 (§7). 다중 라우트 공유만 `components/page/helper/` — `styleBySlug.js`, `styleDetails.js`, `inquiryStorage.js` 등.
 
 ---
 

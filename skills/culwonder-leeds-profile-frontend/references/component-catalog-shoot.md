@@ -12,6 +12,15 @@
 | StudioPlaceCard | `@/components/molecule/StudioPlaceCard` | 촬영장 카드 |
 | StoreCard | `@/components/molecule/StoreCard` | 스토어 공통 카드 |
 | ShootPlaceSwipeList | `@/components/molecule/ShootPlaceSwipeList` | 촬영장 가로 스와이프 목록 |
+| StorePartnerHairMakeupSection | `@/components/molecule/StorePartnerHairMakeupSection` | 스튜디오·HMU 제휴 목록 (`storePartnerList` · note + 인스타 링크) |
+
+---
+
+## 사업자 (Organism)
+
+| 컴포넌트 | import | 용도 |
+|---------|--------|------|
+| BusinessPartnerHairMakeupSection | `@/components/organism/BusinessPartnerHairMakeupSection` | 제휴 등록 note 1필드 (`partnerKind` · POST/PATCH/DELETE) |
 
 ---
 

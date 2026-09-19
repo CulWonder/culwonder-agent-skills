@@ -1,0 +1,23 @@
+{
+  "skill_name": "culwonder-springboot-backend",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Store 도메인에 ADMIN 목록 API를 추가해줘.",
+      "expected_output": "StoreAdminController, GET /api-admin/store/list, StoreListResponse 페이징은 storeList+PageResponseUtil, QueryDSL Repository, Service는 Entity 반환·Controller 인라인 DTO, Allman. application*.properties 미편집.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "회원 목록을 JPQL로 빠르게 조회하는 Repository 메서드 만들어줘.",
+      "expected_output": "JPQL 거절 후 QueryDSL(*RepositoryImpl)로 안내. Aggregate Root만. 네이밍 공식 준수.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Refresh 토큰이 만료되면 조용히 재발급해서 세션 유지되게 해줘.",
+      "expected_output": "재발급·sliding session 금지 규칙을 적용하고 만료 시 에러로 안내.",
+      "files": []
+    }
+  ]
+}

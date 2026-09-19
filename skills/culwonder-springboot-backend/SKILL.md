@@ -3,14 +3,19 @@ name: culwonder-springboot-backend
 description: >-
   Implements Spring Boot 3.5 backend APIs following Culwonder / Leeds Profile
   conventions — Allman braces, DDD aggregates, QueryDSL-only repositories,
-  CommonResponse pagination, API prefix rules, and refresh-token policy. Use when
-  building or reviewing Culwonder Java backends, Leeds Profile APIs, or copying
-  this architecture to a new Spring Boot project.
+  CommonResponse pagination, API prefix rules, naming formula, and refresh-token
+  policy. Use when building, reviewing, or bootstrapping Culwonder Java backends,
+  Leeds Profile APIs, Controllers/Services/Repositories/Entities, or copying this
+  architecture to a new Spring Boot project — even if the user does not name this
+  skill. Trigger on Allman, QueryDSL, CommonResponse, /api-guest, /api-logined,
+  /api-business, /api-admin, aggregate root, or "백엔드 규칙" questions.
 ---
 
 # Culwonder Spring Boot Backend
 
 Culwonder 프로젝트용 백엔드 표준 (Leeds Profile Spring Boot Core 계열).
+
+> **읽는 순서:** 절대 규칙 → 워크플로·체크리스트 → 필요 시 `references/` (네이밍·API·계층·스타일·셋업). 도메인 규칙은 본문·references에 유지한다.
 
 ## 사용 시점
 
@@ -22,9 +27,10 @@ Culwonder 프로젝트용 백엔드 표준 (Leeds Profile Spring Boot Core 계�
 ## 빠른 워크플로
 
 1. **범위** — Guest (`/api/`, `/api-guest/`), logined, business, admin 중 어느 접두사?
-2. **네이밍** — [네이밍 공식](references/naming-formula.md)에 `{D}`·`{d}`·`{A}`·`{S}` 치환
-3. **계층** — Entity + aggregate 메서드 → Repository (QueryDSL) → Service (Entity만 반환) → Controller (DTO 인라인 + CommonResponse)
-4. **검증** — 완료 전 아래 체크리스트 실행
+2. **요청서** — FE `docs/backend-request` 수신 시 path·enum·요청/응답 JSON **확정·회신** (미확정 path로 구현 시작 금지)
+3. **네이밍** — [네이밍 공식](references/naming-formula.md)에 `{D}`·`{d}`·`{A}`·`{S}` 치환
+4. **계층** — Entity + aggregate 메서드 → Repository (QueryDSL) → Service (Entity만 반환) → Controller (DTO 인라인 + CommonResponse)
+5. **검증** — 완료 전 아래 체크리스트 실행
 
 ## 네이밍 공식 (요약)
 
@@ -115,6 +121,43 @@ Swagger 게스트 그룹은 `/api/{domain}/**`와 `/api-guest/{domain}/**`를 �
 ```
 
 키 이름: camelCase + `List` (예: `foodList`, `usersAccountList`).
+
+## 실패 응답 (CommonResponse)
+
+`CustomException` → `GlobalExceptionHandler` → 아래 키만. `message`/`data` 필드 **금지**.
+
+```json
+{
+  "success": false,
+  "successMessage": null,
+  "errorMessage": "유효하지 않은 리프레시 토큰입니다. 다시 로그인해주세요",
+  "errorCode": "E2003",
+  "content": null
+}
+```
+
+허용 키: `success` · `successMessage` · `errorMessage` · `errorCode` · `content` 만.
+FE는 `errorCode`/`errorMessage`(및 방어적 `data.*` fallback)로 파싱한다. BE는 위 키를 SSOT로 고정.
+
+## 완료 전 검증 체크리스트
+
+도메인·API 작업 종료 전에 확인한다. (새 도메인 체크리스트와 함께 사용)
+
+```
+- [ ] API 접두사·권한(/api|/api-guest|/api-logined|/api-business|/api-admin)이 맞다
+- [ ] FE docs/backend-request 수신 시 path·enum·요청/응답 JSON을 확정·회신했다 (미확정 path로 구현 시작 금지)
+- [ ] 네이밍 공식 {D}{A}Controller / {D}{S}Service / {D}Repository* / {d}_module 준수
+- [ ] 목록 경로는 /list, 페이징 키는 {item}List + PageResponseUtil
+- [ ] 실패 응답은 success/errorCode/errorMessage/content/successMessage만 (message/data 금지)
+- [ ] Service는 Entity만 반환, DTO 변환은 Controller 인라인
+- [ ] QueryDSL만 사용 (JPQL 금지), Aggregate Root Repository만
+- [ ] Allman·4칸·FQCN 금지·미사용 import 없음
+- [ ] application*.properties를 AI 세션에서 편집하지 않음 (config/local/)
+- [ ] Refresh 만료 시 재발급·sliding session 없음 (E2003 + 401만)
+- [ ] 핵심 경로 테스트 또는 리뷰 메모가 있다
+```
+
+상세: [naming-formula.md](references/naming-formula.md) · [api-conventions.md](references/api-conventions.md) · [business-layer.md](references/business-layer.md) · [core-standards.md](references/core-standards.md) · [project-setup.md](references/project-setup.md)
 
 ## 참고 문서 (필요 시 읽기)
 

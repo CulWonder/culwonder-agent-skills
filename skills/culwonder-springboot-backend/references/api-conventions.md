@@ -45,6 +45,20 @@ return ResponseEntity.ok(commonResponse);
 ```
 
 에러: `CustomException(ErrorCode.XXX)` throw — `HttpServletResponse`에 직접 쓰지 않음.
+`GlobalExceptionHandler`가 실패 JSON을 만든다. 키는 아래만 허용 (`message`/`data` **금지**):
+
+```json
+{
+  "success": false,
+  "successMessage": null,
+  "errorMessage": "유효하지 않은 리프레시 토큰입니다. 다시 로그인해주세요",
+  "errorCode": "E2003",
+  "content": null
+}
+```
+
+허용: `success` · `successMessage` · `errorMessage` · `errorCode` · `content`.
+Refresh 무효(`INVALID_REFRESH_TOKEN`) → `E2003` + HTTP 401. FE 라우트(`/session-expired` 등)는 BE 스킬 범위 밖.
 
 ## 페이징 (컨트롤러)
 
