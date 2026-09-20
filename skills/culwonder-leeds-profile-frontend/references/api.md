@@ -68,8 +68,14 @@ useQuery({
 **프론트 가이드**(`frontend-guide.md`, BE→FE) = 백엔드가 프론트에게 전달하는 **API 계약만** (Method/Path·Request/Response·enum·에러).  
 화면·컴포넌트·라우팅·React Query·호출 방식·UX 카피는 넣지 않는다 — 그건 FE **FRONTEND_GUIDE** / FE 자율.
 
-회신 위치(짧음 채널 / 중간 `*_BACKEND_REPLY.md` / 김 **프론트 가이드**): 하네스 `FE_BE_DOC_HANDOFF.md` 「회신 파일 위치 · 짧/중/김」.  
-파일 회신은 요청서 「관련」에 **경로 1개** 필수. 기획 요결로 FE·BE 동시 지시면 요청서 생략 가능.
+**BE 회신 저장:** 분량(짧/중/김)과 무관하게 **항상** 프론트 가이드  
+`docs/frontend-guide/{YYYYMMDD}_{HHmmss}_{topic}-frontend-guide.md`  
+- 채널 = `@웹 화면 개발자` + **경로 알림만** (채팅만 스펙 ❌)  
+- 요청서 「관련」= **프론트 가이드 경로 1개** 필수  
+- FE `apiPaths` SSOT = **프론트 가이드만** (`*_BACKEND_REPLY.md`·채널 본문으로 계약 종료 금지)  
+- 기획 요결로 FE·BE 동시 지시면 요청서 생략 가능 (공통 기준 문서 경로만 채널 공유)
+
+상세: 하네스 `docs/FE_BE_DOC_HANDOFF.md`.
 
 ### 프론트 요구사항 처리 중 — 언제 요청서를 쓰는가 (§1-3)
 
