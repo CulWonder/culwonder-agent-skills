@@ -65,6 +65,9 @@ useQuery({
 요청서 Markdown **본문 골격**은 하네스 `backend-request.md`를 복사해 채운다.  
 이 절의 인라인 템플릿은 세부·예시용이며, 양식이 어긋나면 **하네스 템플릿을 우선**한다.
 
+**연동 가이드**(`frontend-guide.md`, BE→FE) = **API 계약만** (Method/Path·Request/Response·enum·에러).  
+화면·컴포넌트·라우팅·React Query·호출 방식·UX 카피는 넣지 않는다 — 그건 FE **FRONTEND_GUIDE** / FE 자율.
+
 회신 위치(짧은 채널 / 중간 `*_BACKEND_REPLY.md` / 긴 **연동 가이드**): 하네스 `FE_BE_DOC_HANDOFF.md` 「회신 파일 위치」.
 
 ### 프론트 요구사항 처리 중 — 언제 요청서를 쓰는가 (§1-3)
