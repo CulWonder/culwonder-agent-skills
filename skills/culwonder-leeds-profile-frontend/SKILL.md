@@ -44,14 +44,15 @@ CulWonder `leeds_profile_next` 레포에서 UI·상태·API 연동을 할 때 �
 
 | 해야 할 것 | 금지 |
 |-----------|------|
-| [references/api.md](references/api.md) **「백엔드 요청 가이드」** 전 절차·템플릿 준수 | 가이드와 다른 형식으로 요청서 작성 |
+| **작성 양식**은 하네스 템플릿(`backend-request.md`) + [references/api.md](references/api.md) **「백엔드 요청 가이드」** 세부 | 가이드·하네스와 다른 형식으로 요청서 작성 |
 | `docs/backend-request/{YYYYMMDD}_{HHmmss}_{기능명}_BACKEND_REQUEST.md`에 요청서 저장 (§1-2·가이드 §문서 템플릿) | `api-docs.yaml`, Spring/Java, DB 마이그레이션 직접 수정 |
 | **업무·UI 관점** 요구(기능, 화면, 필요 데이터, 검증 의도, 현재 상황) 명시 | **URL(path)·요청값·응답값을 프론트가 확정**해 백엔드에 지시 |
 | 변경·추가 요청은 **AS-IS / TO-BE** 로 현재 vs 목표를 구분해 표현 | 변경점을 줄글·목록만 나열 (전후 구분 없음) |
 | 요청서에 **「백엔드 확정·회신 요청」** 절 포함 — path·request·response는 백엔드 설계 후 알려 달라고 명시 | 백엔드 미구현 API를 프론트에서 mock·우회로 **영구 대체** |
 | 기존 **이미 운영 중인** API는 `apiPaths.js`·실제 응답 기준으로 기술 | CulWonder 관례와 다른 path를 프론트가 임의 제안·고정 |
 
-→ 상세 규칙·체크리스트·문서 템플릿: **[references/api.md](references/api.md) §백엔드 요청 가이드**
+→ **양식 SSOT:** 하네스 `docs/FE_BE_DOC_HANDOFF.md` · `templates/backend-request.md`  
+→ **제품 세부:** **[references/api.md](references/api.md) §백엔드 요청 가이드**
 
 ### 1-2. 문서 작성 — 파일명 규칙 (필수)
 
@@ -82,7 +83,7 @@ CulWonder `leeds_profile_next` 레포에서 UI·상태·API 연동을 할 때 �
 - ❌ `business-order-management-frontend-guide.md` 처럼 **날짜·시분초 없는** 신규 파일명
 - **`docs/backend-request/` 보관**: `*_BACKEND_REQUEST.md`는 **최신 10개만** 유지 (`README.md` 제외). 새 요청서 저장 직후 파일명 `{YYYYMMDD}_{HHmmss}` 기준 내림차순 정렬 → 11번째부터 삭제
 
-→ 백엔드 요청서 템플릿·AS-IS/TO-BE: **[references/api.md](references/api.md) §백엔드 요청 가이드**
+→ 작성 양식: 하네스 `templates/backend-request.md` · 세부·AS-IS/TO-BE: **[references/api.md](references/api.md) §백엔드 요청 가이드**
 
 ### 1-3. 프론트 요구사항 처리 중 — 백엔드 요청서 작성 (필수)
 

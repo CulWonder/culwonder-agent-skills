@@ -55,6 +55,28 @@ useQuery({
 > **에이전트·개발자 공통:** 백엔드에 API·스키마 변경을 요청할 때는 **이 절만** 따른다.  
 > SKILL.md §1-1·§1-3과 동일. **저장 위치:** `docs/backend-request/`
 
+### 작성 양식 SSOT (하네스 템플릿)
+
+| 구분 | 역할 |
+|------|------|
+| **작성 양식(템플릿)·init 배포** | 하네스 `harness_culwonder` — `docs/FE_BE_DOC_HANDOFF.md` · `skills/culwonder/references/templates/backend-request.md` · `backend-request-reply.md` · `frontend-guide.md`(BE→FE **프론트 가이드**) |
+| **제품 작성 세부(이 절)** | 언제 쓰는지 · AS-IS/TO-BE · path FE 미확정 · 체크리스트 · Leeds 관례 |
+
+요청서 Markdown **본문 골격**은 하네스 `backend-request.md`를 복사해 채운다.  
+이 절의 인라인 템플릿은 세부·예시용이며, 양식이 어긋나면 **하네스 템플릿을 우선**한다.
+
+**프론트 가이드**(`frontend-guide.md`, BE→FE) = 백엔드가 프론트에게 전달하는 **API 계약만** (Method/Path·Request/Response·enum·에러).  
+화면·컴포넌트·라우팅·React Query·호출 방식·UX 카피는 넣지 않는다 — 그건 FE **FRONTEND_GUIDE** / FE 자율.
+
+**BE 회신 저장:** 분량(짧/중/김)과 무관하게 **항상** 프론트 가이드  
+`docs/frontend-guide/{YYYYMMDD}_{HHmmss}_{topic}-frontend-guide.md`  
+- 채널 = `@웹 화면 개발자` + **경로 알림만** (채팅만 스펙 ❌)  
+- 요청서 「관련」= **프론트 가이드 경로 1개** 필수  
+- FE `apiPaths` SSOT = **프론트 가이드만** (`*_BACKEND_REPLY.md`·채널 본문으로 계약 종료 금지)  
+- 기획 요결로 FE·BE 동시 지시면 요청서 생략 가능 (공통 기준 문서 경로만 채널 공유)
+
+상세: 하네스 `docs/FE_BE_DOC_HANDOFF.md`.
+
 ### 프론트 요구사항 처리 중 — 언제 요청서를 쓰는가 (§1-3)
 
 프론트 작업을 하다가 아래가 보이면 **즉시** `docs/backend-request/{YYYYMMDD}_{HHmmss}_{기능명}_BACKEND_REQUEST.md`를 작성한다.
@@ -199,6 +221,9 @@ docs/{YYYYMMDD}_{HHmmss}_{기능명}_FRONTEND_VERIFICATION_REQUEST.md
 관련 도메인 요청서가 있으면 **상단에 링크**. enum·업무 정의가 겹치면 source of truth 한쪽 명시.
 
 ### 문서 템플릿 (기능 API — 권장)
+
+> **우선:** 하네스 `skills/culwonder/references/templates/backend-request.md`  
+> 아래는 동일 규칙을 설명하는 예시 골격이다.
 
 ```markdown
 # [기능명] — 백엔드 요청
