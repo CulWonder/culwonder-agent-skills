@@ -27,10 +27,26 @@ Culwonder 프로젝트용 백엔드 표준 (Leeds Profile Spring Boot Core 계�
 ## 빠른 워크플로
 
 1. **범위** — Guest (`/api/`, `/api-guest/`), logined, business, admin 중 어느 접두사?
-2. **요청서** — FE `docs/backend-request` 수신 시 path·enum·요청/응답 JSON **확정·회신** (미확정 path로 구현 시작 금지)
+2. **요청서 → 프론트 가이드** — FE `docs/backend-request` 수신 시 path·enum·요청/응답 JSON을 **확정**하고, 분량과 무관하게 항상 **프론트 가이드**로 회신 (아래 「FE 요청서 수신」). 미확정 path로 구현 시작 금지.
 3. **네이밍** — [네이밍 공식](references/naming-formula.md)에 `{D}`·`{d}`·`{A}`·`{S}` 치환
 4. **계층** — Entity + aggregate 메서드 → Repository (QueryDSL) → Service (Entity만 반환) → Controller (DTO 인라인 + CommonResponse)
 5. **검증** — 완료 전 아래 체크리스트 실행
+
+## FE 요청서 수신 · 프론트 가이드 (필수)
+
+하네스 `docs/FE_BE_DOC_HANDOFF.md` · 템플릿 `frontend-guide.md` / `backend-request-reply.md`(체크리스트)를 따른다.  
+**작성 양식 중복 금지** — 요청서 본문은 FE가 씀. BE는 **수신 → 확정 → 프론트 가이드 전달**만.
+
+| 규칙 | 내용 |
+|------|------|
+| 저장 | 길이(짧/중/김) **분기 없음**. 항상 Spring 레포 `docs/frontend-guide/{YYYYMMDD}_{HHmmss}_{주제}-frontend-guide.md` |
+| 호칭 | **프론트 가이드** = BE→FE API 계약. FE 자체 화면 문서는 **FRONTEND_GUIDE** (혼동 금지) |
+| 넣을 것 | Method+Path(접두사) · Request/Response 키(`{item}List`+pagination) · enum·에러코드 · 권한·쿠키/세션 · 미구현/거절/대안 한 줄 |
+| 넣지 말 것 | 화면·컴포넌트·라우팅·React Query·`apis.js` 호출·UX 카피 등 **화면 코드** |
+| 채널 | `@웹 화면 개발자` + **프론트 가이드 경로**만 (채팅만 스펙 ❌) |
+| 요청서 「관련」 | **프론트 가이드 경로 1개** 필수 |
+| FE SSOT | `apiPaths` 반영 기준 = **프론트 가이드만** (`*_BACKEND_REPLY.md`·채널 본문으로 계약 종료 금지) |
+| 예외 | 운영 API만 / 기획 요결로 FE·BE **동시 지시** → 요청서 생략 가능(공통 기준 문서 경로만 채널 공유) |
 
 ## 네이밍 공식 (요약)
 
@@ -58,6 +74,7 @@ Culwonder 프로젝트용 백엔드 표준 (Leeds Profile Spring Boot Core 계�
 | 데이터 | QueryDSL만 (JPQL 금지); Aggregate Root Repository만 |
 | 엔티티 | 정적 팩토리 메서드 금지; root 메서드로 DDD cascade |
 | 인증 토큰 | Refresh 만료 → 에러 (재발급·sliding session 금지) |
+| FE 회신 | 분량 무관 **프론트 가이드**만 (`docs/frontend-guide/`). 채팅·`*_BACKEND_REPLY`만으로 계약 종료 금지. 화면 코드 금지 |
 | 설정 | AI 세션에서 `src/main/resources/application*.properties` 편집 금지; `config/local/` 사용 |
 
 ## 새 도메인 체크리스트
@@ -145,7 +162,7 @@ FE는 `errorCode`/`errorMessage`(및 방어적 `data.*` fallback)로 파싱한�
 
 ```
 - [ ] API 접두사·권한(/api|/api-guest|/api-logined|/api-business|/api-admin)이 맞다
-- [ ] FE docs/backend-request 수신 시 path·enum·요청/응답 JSON을 확정·회신했다 (미확정 path로 구현 시작 금지)
+- [ ] FE 요청서 수신 시 path·enum·요청/응답 JSON을 확정하고 **프론트 가이드**(`docs/frontend-guide/…-frontend-guide.md`)로 전달했다 (채널·`*_BACKEND_REPLY`만으로 계약 종료 금지 · 미확정 path로 구현 시작 금지 · 화면 코드 미포함)
 - [ ] 네이밍 공식 {D}{A}Controller / {D}{S}Service / {D}Repository* / {d}_module 준수
 - [ ] 목록 경로는 /list, 페이징 키는 {item}List + PageResponseUtil
 - [ ] 실패 응답은 success/errorCode/errorMessage/content/successMessage만 (message/data 금지)
