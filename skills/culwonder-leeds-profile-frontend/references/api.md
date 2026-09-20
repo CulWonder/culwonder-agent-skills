@@ -55,6 +55,18 @@ useQuery({
 > **에이전트·개발자 공통:** 백엔드에 API·스키마 변경을 요청할 때는 **이 절만** 따른다.  
 > SKILL.md §1-1·§1-3과 동일. **저장 위치:** `docs/backend-request/`
 
+### 작성 양식 SSOT (하네스 템플릿)
+
+| 구분 | 역할 |
+|------|------|
+| **작성 양식(템플릿)·init 배포** | 하네스 `harness_culwonder` — `docs/FE_BE_DOC_HANDOFF.md` · `skills/culwonder/references/templates/backend-request.md` · `backend-request-reply.md` · `frontend-guide.md`(BE→FE **연동 가이드**) |
+| **제품 작성 세부(이 절)** | 언제 쓰는지 · AS-IS/TO-BE · path FE 미확정 · 체크리스트 · Leeds 관례 |
+
+요청서 Markdown **본문 골격**은 하네스 `backend-request.md`를 복사해 채운다.  
+이 절의 인라인 템플릿은 세부·예시용이며, 양식이 어긋나면 **하네스 템플릿을 우선**한다.
+
+회신 위치(짧은 채널 / 중간 `*_BACKEND_REPLY.md` / 긴 **연동 가이드**): 하네스 `FE_BE_DOC_HANDOFF.md` 「회신 파일 위치」.
+
 ### 프론트 요구사항 처리 중 — 언제 요청서를 쓰는가 (§1-3)
 
 프론트 작업을 하다가 아래가 보이면 **즉시** `docs/backend-request/{YYYYMMDD}_{HHmmss}_{기능명}_BACKEND_REQUEST.md`를 작성한다.
@@ -199,6 +211,9 @@ docs/{YYYYMMDD}_{HHmmss}_{기능명}_FRONTEND_VERIFICATION_REQUEST.md
 관련 도메인 요청서가 있으면 **상단에 링크**. enum·업무 정의가 겹치면 source of truth 한쪽 명시.
 
 ### 문서 템플릿 (기능 API — 권장)
+
+> **우선:** 하네스 `skills/culwonder/references/templates/backend-request.md`  
+> 아래는 동일 규칙을 설명하는 예시 골격이다.
 
 ```markdown
 # [기능명] — 백엔드 요청
