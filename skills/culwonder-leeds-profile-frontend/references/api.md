@@ -59,16 +59,17 @@ useQuery({
 
 | 구분 | 역할 |
 |------|------|
-| **작성 양식(템플릿)·init 배포** | 하네스 `harness_culwonder` — `docs/FE_BE_DOC_HANDOFF.md` · `skills/culwonder/references/templates/backend-request.md` · `backend-request-reply.md` · `frontend-guide.md`(BE→FE **연동 가이드**) |
+| **작성 양식(템플릿)·init 배포** | 하네스 `harness_culwonder` — `docs/FE_BE_DOC_HANDOFF.md` · `skills/culwonder/references/templates/backend-request.md` · `backend-request-reply.md` · `frontend-guide.md`(BE→FE **프론트 가이드**) |
 | **제품 작성 세부(이 절)** | 언제 쓰는지 · AS-IS/TO-BE · path FE 미확정 · 체크리스트 · Leeds 관례 |
 
 요청서 Markdown **본문 골격**은 하네스 `backend-request.md`를 복사해 채운다.  
 이 절의 인라인 템플릿은 세부·예시용이며, 양식이 어긋나면 **하네스 템플릿을 우선**한다.
 
-**연동 가이드**(`frontend-guide.md`, BE→FE) = **API 계약만** (Method/Path·Request/Response·enum·에러).  
+**프론트 가이드**(`frontend-guide.md`, BE→FE) = 백엔드가 프론트에게 전달하는 **API 계약만** (Method/Path·Request/Response·enum·에러).  
 화면·컴포넌트·라우팅·React Query·호출 방식·UX 카피는 넣지 않는다 — 그건 FE **FRONTEND_GUIDE** / FE 자율.
 
-회신 위치(짧은 채널 / 중간 `*_BACKEND_REPLY.md` / 긴 **연동 가이드**): 하네스 `FE_BE_DOC_HANDOFF.md` 「회신 파일 위치」.
+회신 위치(짧음 채널 / 중간 `*_BACKEND_REPLY.md` / 김 **프론트 가이드**): 하네스 `FE_BE_DOC_HANDOFF.md` 「회신 파일 위치 · 짧/중/김」.  
+파일 회신은 요청서 「관련」에 **경로 1개** 필수. 기획 요결로 FE·BE 동시 지시면 요청서 생략 가능.
 
 ### 프론트 요구사항 처리 중 — 언제 요청서를 쓰는가 (§1-3)
 
