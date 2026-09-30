@@ -41,7 +41,7 @@ export {
 
 export default function HelperWorkoutGuidePage() {
   return (
-    <HelperMuscleDetailPanel
+    <ExampleDetailPanel
       getMuscleExercises={getMuscleExercises}
       muscleListByPart={muscleListByPart}
       /* … */

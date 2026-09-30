@@ -11,7 +11,6 @@
 | ProfileSideMenu | `@/components/organism/ProfileSideMenu` | basic 프로필 사이드 |
 | ProfileSideMenuBusiness | `@/components/organism/ProfileSideMenuBusiness` | business 프로필 사이드 |
 | ProfileSideMenuFood | `@/components/organism/ProfileSideMenuFood` | food basic 메뉴 변형 |
-| ProfileSideMenuFoodBusiness | `@/components/organism/ProfileSideMenuFoodBusiness` | food business 메뉴 변형 |
 
 **레이아웃**
 - `(ui)/[domain]/profile/basic/layout.js` → `ProfileSideMenu` + `ProfileSideMenuFood`

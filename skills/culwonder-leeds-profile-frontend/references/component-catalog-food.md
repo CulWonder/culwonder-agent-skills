@@ -13,7 +13,6 @@
 | FoodProductManagementCard | `@/components/molecule/FoodProductManagementCard` | 사업자 food 상품 관리 카드 |
 | CartItemInfoCard | `@/components/molecule/CartItemInfoCard` | 장바구니 라인 아이템 |
 | CartMacroDisclaimer | `@/components/molecule/CartMacroDisclaimer` | 영양·매크로 안내 문구 |
-| PurchaseLineList | `@/components/molecule/PurchaseLineList` | 구매 내역 라인 목록 |
 | ReviewableProductThumbnail | `@/components/molecule/ReviewableProductThumbnail` | 리뷰 가능 상품 썸네일 |
 
 ---
