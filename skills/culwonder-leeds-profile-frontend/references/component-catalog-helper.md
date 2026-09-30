@@ -13,7 +13,7 @@
 | ActivePlanSync | `@/components/helper/ActivePlanSync` | Redux active plan 동기화 |
 | HelperGuideSessionMark | `@/components/helper/HelperGuideSessionMark` | 가이드 세션 마킹 |
 
-**HelperUiShell**이 마운트하는 organism: `HelperStyleQuizModal`, `HelperStyleQuizFloatingWidget`, `HelperGuideOnboardingModal`, `HelperPosePickToast`
+**HelperUiShell**이 마운트하는 organism: `HelperStyleQuizModal`, `HelperStyleQuizFloatingWidget`, `HelperGuideOnboardingModal`
 
 ---
 
@@ -47,7 +47,6 @@
 | HelperStyleCard | `@/components/molecule/HelperStyleCard` | 스타일 카드 |
 | HelperMaleStyleCard | `@/components/molecule/HelperMaleStyleCard` | 남성 스타일 카드 |
 | HelperStyleSuggestionsCarousel | `@/components/molecule/HelperStyleSuggestionsCarousel` | 스타일 추천 캐러셀 |
-| HelperPlanHeaderLink | `@/components/molecule/HelperPlanHeaderLink` | 플랜 헤더 링크 |
 | HelperGuideProgressBar | `@/components/molecule/HelperGuideProgressBar` | 가이드 진행 바 |
 
 훅: `useHelperQuiz`, `useHelperGuideOnboarding`
@@ -58,14 +57,9 @@
 
 | 컴포넌트 | import | 용도 |
 |---------|--------|------|
-| HelperPoseGuideStickyBar | `@/components/organism/HelperPoseGuideStickyBar` | 포즈 가이드 sticky 바 |
 | HelperPoseGuideCategoryGallery | `@/components/organism/HelperPoseGuideCategoryGallery` | 카테고리 갤러리 |
-| HelperPoseFavoritesPanel | `@/components/organism/HelperPoseFavoritesPanel` | 포즈 즐겨찾기 패널 |
 | HelperPosePromptBanner | `@/components/organism/HelperPosePromptBanner` | 포즈 안내 배너 |
-| HelperGuidePoseBanner | `@/components/organism/HelperGuidePoseBanner` | 가이드 포즈 배너 |
-| HelperPosePickToast | `@/components/organism/HelperPosePickToast` | 포즈 선택 토스트 |
 | HelperPoseCategoryCard | `@/components/molecule/HelperPoseCategoryCard` | 포즈 카테고리 카드 |
-| HelperPoseFavoriteButton | `@/components/molecule/HelperPoseFavoriteButton` | 포즈 즐겨찾기 버튼 |
 
 ---
 
@@ -74,7 +68,6 @@
 | 컴포넌트 | import | 용도 |
 |---------|--------|------|
 | HelperGuideOnboardingModal | `@/components/organism/HelperGuideOnboardingModal` | 가이드 온보딩 모달 |
-| HelperShootingInquiryForm | `@/components/organism/HelperShootingInquiryForm` | 촬영 문의 폼 |
 
 데이터/상수: 각 라우트 `page.js` 내부 (§7). 다중 라우트 공유만 `components/page/helper/` — `styleBySlug.js`, `styleDetails.js`, `inquiryStorage.js` 등.
 

@@ -100,7 +100,7 @@
 |--------|--------|------|
 | Button | `@/components/ui/button` | 기본 버튼 |
 | brand-button | `@/components/ui/brand-button` | 리즈 브랜드 CTA |
-| Input / Label | `@/components/ui/input`, `label` | 폼 |
+| Input | `@/components/ui/input` | 폼 |
 | Dialog / AlertDialog | `@/components/ui/dialog`, `alert-dialog` | 가벼운 모달 |
 | Tooltip | `@/components/ui/tooltip` | 툴팁 |
 
